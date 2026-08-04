@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@theme {
+  --color-paper: #F6F4EE;
+  --color-paper-raised: #FFFFFF;
+  --color-ink: #23281F;
+  --color-ink-soft: #5B6358;
+  --color-accent: #C79A2B;
+  --color-accent-deep: #A57F1E;
+  --color-sage: #6E8F6C;
+  --color-brick: #B5654A;
+  --color-line: #DAD5C8;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.fc {
+  font-family: var(--font-body);
+  --fc-border-color: var(--color-line);
+  --fc-today-bg-color: rgba(199, 154, 43, 0.08);
+  --fc-neutral-bg-color: var(--color-paper-raised);
+}
+.fc .fc-toolbar-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-ink);
+  font-size: 1.5rem;
+}
+.fc .fc-button {
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  box-shadow: none;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.fc .fc-button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+.fc-daygrid-day-number {
+  font-family: var(--font-mono);
+  color: var(--color-ink-soft);
+  font-size: 0.8rem;
+}
+.fc-col-header-cell-cushion {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+.fc-daygrid-day:hover {
+  background: rgba(199, 154, 43, 0.06);
+  cursor: pointer;
+}
+.fc-day-today .fc-daygrid-day-number {
+  position: relative;
+}
+.fc-day-today .fc-daygrid-day-top::after {
+  content: "TODAY";
+  position: absolute;
+  top: -2px;
+  right: 4px;
+  background: var(--color-accent);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 2px 2px 2px 0;
+  transform: rotate(2deg);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+}
+
+.task-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 5px;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.6) inset;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+/* --- Accessibility --- */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- Scrollbar for modals --- */
+.custom-scroll::-webkit-scrollbar { width: 6px; }
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 3px;
+}
+
+/* --- Animations --- */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Calendar event pills --- */
+.fc-daygrid-event {
+  border-radius: 6px !important;
+  padding: 2px 6px !important;
+  border: none !important;
+  margin-top: 2px !important;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.fc-daygrid-event:hover {
+  filter: brightness(0.94);
+  transform: translateY(-1px);
+}
+/* --- "+N more" badge on days with 3+ tasks --- */
+.fc-daygrid-more-link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: rgba(199, 154, 43, 0.1);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-top: 2px;
+  transition: all 0.15s ease;
+}
+.fc-daygrid-more-link:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+.fc-popover {
+  border: 1px solid var(--color-line) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+.fc-popover-header {
+  background: var(--color-paper) !important;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-soft) !important;
+  padding: 6px 10px !important;
+}
